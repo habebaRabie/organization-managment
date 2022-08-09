@@ -2,11 +2,10 @@ package com.ntg.organization.organization;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
-import org.springframework.web.client.RestTemplate;
+//import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
+//@EnableSwagger2
 public class OrganizationApplication {
 
 	public static void main(String[] args) {
@@ -14,3 +13,5 @@ public class OrganizationApplication {
 	}
 
 }
+
+//http://localhost:8090/swagger-ui.html
