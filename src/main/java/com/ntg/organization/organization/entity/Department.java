@@ -26,6 +26,6 @@ public class Department {
     @Column(name = "dept_name", length = 100, nullable = false)
     private String deptName;
 
-//    @OneToMany(mappedBy = "employee")
-//    private List<Employee> employees;
+    @OneToMany(mappedBy="department")
+    private List<Employee> employees;
 }
