@@ -3,13 +3,7 @@ package com.ntg.organization.organization.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ntg.organization.organization.entity.Employee;
 import com.ntg.organization.organization.service.EmployeeService;
@@ -26,9 +20,14 @@ public class EmployeeController {
 	public List<Employee> getAllEmployee() {
 		return employeeService.getAllEmployee();
 	}
+
+	@GetMapping(value = "/getByName/{name}/{email}")
+	public Employee getEmployeeByName(@PathVariable String name, @PathVariable String email) {
+		return employeeService.getEmployeeByName(name, email);
+	}
 	
 	@PostMapping(value = "/add")
-	public boolean createNewEmployee(@RequestBody Employee newEmp) {
+	public Employee createNewEmployee(@RequestBody Employee newEmp) {
 		return employeeService.createNewEmployee(newEmp);
 	}
 	
@@ -36,5 +35,11 @@ public class EmployeeController {
 	public boolean deleteEmployee(@PathVariable (value = "empId") Long id) {
 		return employeeService.deleteEmployeeById(id);
 	}
+
+//	@PutMapping(value = "/updateByName/{EmpName}")
+//	public Employee updateEmployee(@PathVariable (value = "EmpName") String name){
+//		return employeeService.updateByName(name);
+//	}
+
 
 }
