@@ -17,7 +17,7 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @GetMapping(value = "/all")
-    public List<Department> getAllDepartment() {
+    public List<DepartmentRequest> getAllDepartment() {
         return departmentService.getAllDepartments();
     }
 
@@ -36,8 +36,8 @@ public class DepartmentController {
         return departmentService.deleteDepartmentById(id);
     }
 
-//    @PutMapping(value = "/updateByName/{dept_name}")
-//    public Department updateDepartmentName(@PathVariable  (value = "dept_name") String name){
-//        return departmentService.updateDepartmentName(name);
-//    }
+    @PutMapping(value = "/updateByName/{deptId}")
+    public Department updateDepartmentName(@RequestBody DepartmentRequest departmentRequest, @PathVariable (value = "deptId") Long id) throws Exception {
+        return departmentService.updateDepartmentById(departmentRequest, id);
+    }
 }
