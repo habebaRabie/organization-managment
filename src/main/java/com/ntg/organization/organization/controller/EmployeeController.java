@@ -2,6 +2,8 @@ package com.ntg.organization.organization.controller;
 
 import java.util.List;
 
+import com.ntg.organization.organization.dto.EmployeeRequest;
+import com.ntg.organization.organization.dto.EmployeeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,7 @@ public class EmployeeController {
 	
 	
 	@GetMapping(value = "/all")
-	public List<Employee> getAllEmployee() {
+	public List<EmployeeResponse> getAllEmployee() {
 		return employeeService.getAllEmployee();
 	}
 
@@ -27,7 +29,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping(value = "/add")
-	public Employee createNewEmployee(@RequestBody Employee newEmp) {
+	public Employee createNewEmployee(@RequestBody EmployeeRequest newEmp) {
 		return employeeService.createNewEmployee(newEmp);
 	}
 	
@@ -36,10 +38,9 @@ public class EmployeeController {
 		return employeeService.deleteEmployeeById(id);
 	}
 
-//	@PutMapping(value = "/updateByName/{EmpName}")
-//	public Employee updateEmployee(@PathVariable (value = "EmpName") String name){
-//		return employeeService.updateByName(name);
-//	}
-
+	@PutMapping(value = "/updateByName/{empId}")
+	public Employee updateEmployee(@RequestBody EmployeeRequest employeeRequest, @PathVariable (value = "empId") Long id) throws Exception {
+		return employeeService.updateEmployeeById(employeeRequest, id);
+	}
 
 }

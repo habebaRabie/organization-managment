@@ -1,6 +1,7 @@
 package com.ntg.organization.organization.service;
 
 import com.ntg.organization.organization.dto.DepartmentRequest;
+import com.ntg.organization.organization.dto.DepartmentResponse;
 import com.ntg.organization.organization.entity.Department;
 import com.ntg.organization.organization.entity.Employee;
 import com.ntg.organization.organization.repository.DepartmentRepository;
@@ -17,20 +18,20 @@ public class DepartmentService {
     @Autowired
     DepartmentRepository departmentRepository;
 
-    public List<DepartmentRequest> getAllDepartments() {
+    public List<DepartmentResponse> getAllDepartments() {
         List<Department> depts =  (List<Department>) departmentRepository.findAll();
-        List<DepartmentRequest> deptsRequestList = null;
+        List<DepartmentResponse> deptsResponseList = null;
 
         if(!depts.isEmpty()){
-            deptsRequestList = new ArrayList<>();
-            DepartmentRequest deptReq;
+            deptsResponseList = new ArrayList<>();
+            DepartmentResponse deptRes;
             for(Department department: depts){
-                deptReq = new DepartmentRequest();
-                BeanUtils.copyProperties(department, deptReq);
-                deptsRequestList.add(deptReq);
+                deptRes = new DepartmentResponse();
+                BeanUtils.copyProperties(department, deptRes);
+                deptsResponseList.add(deptRes);
             }
         }
-        return deptsRequestList;
+        return deptsResponseList;
     }
 
     public Department createNewDepartment(DepartmentRequest departmentRequest) {
@@ -46,7 +47,6 @@ public class DepartmentService {
     public boolean deleteDepartmentById(Long id) {
 
         if (id != null) {
-
             departmentRepository.deleteById(id);
             return true;
         }

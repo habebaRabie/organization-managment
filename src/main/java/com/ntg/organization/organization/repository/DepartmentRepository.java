@@ -11,5 +11,4 @@ public interface DepartmentRepository extends CrudRepository<Department, Long> {
 
     public Department findByDeptName(String name);
 
-//    public Department updateByDeptName(Department updatedDept);
 }

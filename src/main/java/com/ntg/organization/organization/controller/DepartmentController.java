@@ -1,6 +1,7 @@
 package com.ntg.organization.organization.controller;
 
 import com.ntg.organization.organization.dto.DepartmentRequest;
+import com.ntg.organization.organization.dto.DepartmentResponse;
 import com.ntg.organization.organization.entity.Department;
 import com.ntg.organization.organization.entity.Employee;
 import com.ntg.organization.organization.service.DepartmentService;
@@ -17,7 +18,7 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @GetMapping(value = "/all")
-    public List<DepartmentRequest> getAllDepartment() {
+    public List<DepartmentResponse> getAllDepartment() {
         return departmentService.getAllDepartments();
     }
 
