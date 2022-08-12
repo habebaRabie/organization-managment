@@ -7,7 +7,7 @@ import java.util.List;
 public class DepartmentRequest {
 
     private Long id;
-    private String departmentName;
+    private String deptName;
     private List<Employee> employees;
 
     public List<Employee> getEmployees() {
@@ -25,11 +25,11 @@ public class DepartmentRequest {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getDepartmentName() {
-        return departmentName;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 }

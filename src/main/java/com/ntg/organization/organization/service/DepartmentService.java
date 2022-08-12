@@ -37,7 +37,7 @@ public class DepartmentService {
 
         if (departmentRequest != null) {
             Department newDept = new Department();
-            newDept.setDeptName(departmentRequest.getDepartmentName());
+            newDept.setDeptName(departmentRequest.getDeptName());
             return departmentRepository.save(newDept);
         }
         return null;
@@ -58,7 +58,7 @@ public class DepartmentService {
         if (departmentRequest != null && departmentRepository.existsById(id)) {
             Department newDept = new Department();
             newDept.setId(id);
-            newDept.setDeptName(departmentRequest.getDepartmentName());
+            newDept.setDeptName(departmentRequest.getDeptName());
             return departmentRepository.save(newDept);
         }
         throw new Exception();
