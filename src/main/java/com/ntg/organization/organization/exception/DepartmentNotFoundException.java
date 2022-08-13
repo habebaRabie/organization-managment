@@ -1,7 +1,6 @@
 package com.ntg.organization.organization.exception;
 
-public class DepartmentNotFoundException extends RuntimeException {
-
+public class DepartmentNotFoundException extends RuntimeException  implements EntityNotFoundException {
     public DepartmentNotFoundException(){
         super();
     }

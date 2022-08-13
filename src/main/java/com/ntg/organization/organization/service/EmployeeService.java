@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.ntg.organization.organization.dto.EmployeeRequest;
 import com.ntg.organization.organization.dto.EmployeeResponse;
+import com.ntg.organization.organization.exception.EmployeeNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,9 @@ public class EmployeeService {
 				BeanUtils.copyProperties(employee, empRes);
 				employeeResponses.add(empRes);
 			}
+			return employeeResponses;
 		}
-		return employeeResponses;
+		throw new EmployeeNotFoundException();
 	}
 
 	public Employee createNewEmployee(EmployeeRequest EmpReq) {
@@ -45,7 +47,7 @@ public class EmployeeService {
 			newEmp.setDepartment(EmpReq.getDepartment());
 			return employeeRepository.save(newEmp);
 		}
-		return null;
+		throw new EmployeeNotFoundException();
 	}
 
 	public boolean deleteEmployeeById(Long id) {
@@ -60,7 +62,10 @@ public class EmployeeService {
 	}
 
 	public Employee getEmployeeByName(String name, String email) {
-		return employeeRepository.findByNameAndEmail(name, email);
+		if(employeeRepository.findByNameAndEmail(name, email) != null){
+			return employeeRepository.findByNameAndEmail(name, email);
+		}
+		throw new EmployeeNotFoundException();
 	}
 
 	public Employee updateEmployeeById(EmployeeRequest employeeRequest, Long id) {
@@ -71,7 +76,8 @@ public class EmployeeService {
 			newEmp.setName(employeeRequest.getName());
 			newEmp.setEmail(employeeRequest.getEmail());
 			newEmp.setDepartment(employeeRequest.getDepartment());
+			return employeeRepository.save(newEmp);
 		}
-		return employeeRepository.save(newEmp);
+		throw new EmployeeNotFoundException();
 	}
 }

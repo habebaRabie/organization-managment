@@ -1,6 +1,6 @@
 package com.ntg.organization.organization.exception;
 
-public class EmployeeNotFoundException extends RuntimeException {
+public class EmployeeNotFoundException extends RuntimeException implements EntityNotFoundException {
 
     public EmployeeNotFoundException() {
         super();

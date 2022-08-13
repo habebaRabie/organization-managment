@@ -65,6 +65,9 @@ public class DepartmentService {
     }
 
     public Department getDepartmentByName(String name) {
-        return departmentRepository.findByDeptName(name);
+        if(departmentRepository.findByDeptName(name)!= null){
+            return departmentRepository.findByDeptName(name);
+        }
+        throw new DepartmentNotFoundException();
     }
 }
