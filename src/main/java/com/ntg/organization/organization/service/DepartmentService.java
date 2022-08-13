@@ -3,7 +3,7 @@ package com.ntg.organization.organization.service;
 import com.ntg.organization.organization.dto.DepartmentRequest;
 import com.ntg.organization.organization.dto.DepartmentResponse;
 import com.ntg.organization.organization.entity.Department;
-import com.ntg.organization.organization.entity.Employee;
+import com.ntg.organization.organization.exception.DepartmentNotFoundException;
 import com.ntg.organization.organization.repository.DepartmentRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,14 +54,14 @@ public class DepartmentService {
         return false;
     }
 
-    public Department updateDepartmentById(DepartmentRequest departmentRequest, Long id) throws Exception {
+    public Department updateDepartmentById(DepartmentRequest departmentRequest, Long id) throws DepartmentNotFoundException {
         if (departmentRequest != null && departmentRepository.existsById(id)) {
             Department newDept = new Department();
             newDept.setId(id);
             newDept.setDeptName(departmentRequest.getDeptName());
             return departmentRepository.save(newDept);
         }
-        throw new Exception();
+        throw new DepartmentNotFoundException();
     }
 
     public Department getDepartmentByName(String name) {
