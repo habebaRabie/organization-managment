@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +21,17 @@ public class User {
     @JsonIgnore
     private String password;
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
 
 

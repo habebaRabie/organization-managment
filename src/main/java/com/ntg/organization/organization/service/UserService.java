@@ -10,11 +10,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.ntg.organization.organization.entity.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Service
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
@@ -33,7 +34,6 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUserName(),
                 user.getPassword(),
                 mapToGrantedAuthorities());
-
     }
 
     private static List<GrantedAuthority> mapToGrantedAuthorities() {
