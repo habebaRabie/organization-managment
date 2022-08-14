@@ -1,6 +1,7 @@
 package com.ntg.organization.organization.service;
 
 
+import com.ntg.organization.organization.dto.CustomUser;
 import com.ntg.organization.organization.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,9 +32,15 @@ public class UserService implements UserDetailsService {
         if (user == null)
             throw new UsernameNotFoundException("User " + username + " Not found");
 
-        return new org.springframework.security.core.userdetails.User(user.getUserName(),
+        return new CustomUser(user.getUserName(),
                 user.getPassword(),
-                mapToGrantedAuthorities());
+                true,
+                true,
+                true,
+                true,
+                mapToGrantedAuthorities(),
+                user.getFirstName(),
+                user.getLastName());
     }
 
     private static List<GrantedAuthority> mapToGrantedAuthorities() {
@@ -49,5 +56,9 @@ public class UserService implements UserDetailsService {
         }
 
         return user;
+    }
+
+    public List<User> getAllUsers(){
+        return (List<User>) userRepository.findAll();
     }
 }
