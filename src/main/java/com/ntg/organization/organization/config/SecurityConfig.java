@@ -49,7 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
-        http.csrf().disable().authorizeRequests().antMatchers("/user/v1/add", "/user/v1/login").permitAll()
+        http.csrf().disable().authorizeRequests().antMatchers("/user/v1/add", "/user/v1/login","/swagger-ui.html",
+                        "/swagger-resources/**","/webjars/**","/swagger-ui/*",
+                        "/v2/api-docs").permitAll()
                 .anyRequest().authenticated().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
